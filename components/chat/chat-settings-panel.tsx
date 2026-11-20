@@ -57,6 +57,7 @@ import { CHAT_SESSION_CSS_EXAMPLE } from "@/lib/css-examples";
 import { Toggle, Input, Textarea } from "@/components/ui/form";
 import { PageShell } from "@/components/ui/page-shell";
 import { isCharacterAutoTranscribeEnabled, setCharacterAutoTranscribeEnabled } from "@/lib/voice-auto-transcribe";
+import { isCharacterAutoTranscribeEnabled, setCharacterAutoTranscribeEnabled } from "@/lib/voice-auto-transcribe";
 import {
     IMESSAGE_TAPBACKS,
     loadIMessageTapbacks,
@@ -1146,6 +1147,24 @@ export function ChatSettingsPanel({
                         </div>
                         <input type="file" accept="image/*" onChange={e => handleImageUpload(e, setVoiceBackground, "voiceBackground")} className="hidden" />
                     </label>
+{!session.isGroup && (
+                            <div className="menu-item">
+                                <ChatInfoIcon icon={Mic} color={BINDING_ACCENTS.voice} />
+                                <div className="menu-label-group">
+                                    <span className="menu-label">收到语音自动转文字</span>
+                                    <span className="menu-desc">角色发来语音时自动识别并展开文字</span>
+                                </div>
+                                <div className="menu-right">
+                                    <Toggle
+                                        checked={autoTranscribeVoice}
+                                        onChange={c => {
+                                            setAutoTranscribeVoice(c);
+                                            setCharacterAutoTranscribeEnabled(session.contactId, c);
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        )}
 {/* Tapback candidates are edited inline in the reaction bar; keep saved data, hide the redundant settings entry. */}
 <div className="menu-item">
                             <ChatInfoIcon icon={Smile} color={BINDING_ACCENTS.preset} />
