@@ -56,6 +56,7 @@ import { ConfirmDialog } from "@/components/ui/modal";
 import { CHAT_SESSION_CSS_EXAMPLE } from "@/lib/css-examples";
 import { Toggle, Input, Textarea } from "@/components/ui/form";
 import { PageShell } from "@/components/ui/page-shell";
+import { isCharacterAutoTranscribeEnabled, setCharacterAutoTranscribeEnabled } from "@/lib/voice-auto-transcribe";
 import {
     IMESSAGE_TAPBACKS,
     loadIMessageTapbacks,
